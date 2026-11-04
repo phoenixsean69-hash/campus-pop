@@ -9,8 +9,11 @@ import "../../theme" as Theme
 Rectangle {
     id: root
     property var courseItems: []
-    readonly property var visibleCourses: courseItems && courseItems.length
-                                          ? courseItems.slice(0, 3) : []
+    readonly property var visibleCourses: {
+        var ordered = courseItems && courseItems.length ? courseItems.slice(0) : []
+        ordered.sort(function(a,b) { return String(b.lastActivityAt || "").localeCompare(String(a.lastActivityAt || "")) })
+        return ordered.slice(0, 3)
+    }
     signal courseClicked(string course)
 
     implicitHeight: 94 + (visibleCourses.length > 0 ? visibleCourses.length * 57 : 44)

@@ -396,6 +396,32 @@ ColumnLayout {
                     color: "#19654C"; lineHeight: 1.25
                 }
             }
+            // CAMPUS_POP_REAL_TOPIC_PROGRESS_V47
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 44
+                radius: 10
+                color: c.tealSoft
+                readonly property bool isComplete: {
+                    var change = courseProgressBridge.courses
+                    return detail.activeTopic !== null && courseProgressBridge.topicCompleted(detail.courseData.code, detail.selectedTopicIndex)
+                }
+                Text {
+                    anchors.centerIn: parent
+                    text: parent.isComplete ? "✓ Topic marked completed — click to undo" : "Mark topic completed"
+                    color: c.ink
+                    font.family: c.uiFont
+                    font.pixelSize: Math.round(13 * c.typeScale)
+                    font.bold: true
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        courseProgressBridge.setTopicCompleted(detail.courseData.code, detail.selectedTopicIndex, !parent.isComplete)
+                    }
+                }
+            }
             RowLayout {
                 Layout.fillWidth: true; Layout.topMargin: 6
                 Text {
@@ -410,6 +436,60 @@ ColumnLayout {
                     Layout.preferredWidth: 138; Layout.preferredHeight: 43
                     fillColor: "#FF7113"; shadowColor: "#C94B04"
                     onClicked: { detail.selectedTopicIndex += 1; detail.answerRevealed=false; detail.scrollTopRequested() }
+                }
+            }
+        }
+    }
+
+    // Custom course topics are user-authored, not synthetic lessons.
+    Rectangle {
+        visible: detail.activeTab === "Topics" && !detail.content
+        Layout.fillWidth: true
+        Layout.preferredHeight: visible ? customTopicBody.implicitHeight + 36 : 0
+        radius: 17; color: c.cardSurface; border.color: c.cardBorder
+        ColumnLayout {
+            id: customTopicBody
+            anchors.left: parent.left; anchors.right: parent.right; anchors.top: parent.top
+            anchors.margins: 17; spacing: 8
+            Text { text: "Your course topics"; color: c.ink; font.family: c.uiFont; font.pixelSize: Math.round(17*c.typeScale); font.bold: true }
+            Text { text: "Add the actual topics from your course outline. Mark a topic only when you finish it."; Layout.fillWidth: true; wrapMode: Text.WordWrap; color: c.muted; font.family: c.uiFont; font.pixelSize: Math.round(12*c.typeScale) }
+            RowLayout {
+                Layout.fillWidth: true
+                TextField {
+                    id: newCustomTopic
+                    Layout.fillWidth: true
+                    placeholderText: "Course topic name"
+                }
+                Button {
+                    text: "Add topic"
+                    onClicked: {
+                        if (courseProgressBridge.addTopic(detail.courseData.code, newCustomTopic.text))
+                            newCustomTopic.text = ""
+                        else detail.notice("Enter a unique topic name.")
+                    }
+                }
+            }
+            Repeater {
+                model: detail.courseData.topics || []
+                delegate: Rectangle {
+                    required property int index
+                    required property string modelData
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 39
+                    radius: 9; color: c.surfaceSoft
+                    readonly property bool completed: {
+                        var change = courseProgressBridge.courses
+                        return courseProgressBridge.topicCompleted(detail.courseData.code, index)
+                    }
+                    RowLayout {
+                        anchors.fill: parent; anchors.leftMargin: 10; anchors.rightMargin: 10
+                        Text { Layout.fillWidth: true; text: modelData; color: c.ink; font.family: c.uiFont; elide: Text.ElideRight }
+                        Text { text: completed ? "✓ Completed" : "Mark done"; color: c.orangeDark; font.family: c.uiFont; font.pixelSize: 12; font.bold: true }
+                    }
+                    MouseArea {
+                        anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                        onClicked: courseProgressBridge.setTopicCompleted(detail.courseData.code, index, !completed)
+                    }
                 }
             }
         }

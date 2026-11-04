@@ -16,7 +16,7 @@ ColumnLayout {
     property bool paused: false
     property bool saved: false
     property double endsAt: 0
-    property string course: "Applied Statistics"
+    property string course: courseProgressBridge.courses.length ? courseProgressBridge.courses[0].title : "Independent study"
     readonly property int elapsed: Math.max(0,totalSeconds-remaining)
     readonly property real ratio: totalSeconds > 0 ? Math.min(1,elapsed/totalSeconds) : 0
     property string goal: ""
@@ -114,10 +114,10 @@ ColumnLayout {
                     W.SolidAction { Layout.fillWidth: true; text: "Break " + settingsBridge.breakMinutes + "m"; enabled: !root.running; fillColor: "#0DA888"; bottomColor: "#067961"; onClicked: root.setDuration(settingsBridge.breakMinutes*60,"Break") }
                 }
                 Text { text: "COURSE"; color: c.muted; font.family: c.uiFont; font.pixelSize: Math.round(12 * c.typeScale); font.weight: Font.Bold }
-                W.VisibleCombo { Layout.fillWidth: true; enabled: !root.running; model: ["Applied Statistics","Python Programming","Computer Systems","Software Engineering","Discrete Mathematics","Database Systems","Independent study"]; onActivated: root.course = currentText }
+                W.VisibleCombo { Layout.fillWidth: true; enabled: !root.running; model: courseProgressBridge.courses.map(function(course) { return course.title }).concat(["Independent study"]); onActivated: root.course = currentText }
                 Text { text: "YOUR FOCUS GOAL"; color: c.muted; font.family: c.uiFont; font.pixelSize: Math.round(12 * c.typeScale); font.weight: Font.Bold }
                 W.TextInputBox { Layout.fillWidth: true; text: root.goal; placeholderText: "What will you finish this session?"; onEditingFinished: root.goal = text }
-                Text { Layout.fillWidth: true; text: "Today: " + workspaceBridge.weeklyFocusMinutes + " minutes recorded this week"; color: c.orangeDark; font.family: c.uiFont; font.pixelSize: Math.round(14 * c.typeScale); font.weight: Font.Bold }
+                Text { Layout.fillWidth: true; text: "This week: " + workspaceBridge.weeklyFocusMinutes + " recorded minutes"; color: c.orangeDark; font.family: c.uiFont; font.pixelSize: Math.round(14 * c.typeScale); font.weight: Font.Bold }
                 Item { Layout.fillHeight: true }
             }
         }

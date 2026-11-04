@@ -12,6 +12,7 @@ from pathlib import Path
 from uuid import uuid4
 from shutil import copy2
 
+from backend.student_database import StudentDatabase
 from PySide6.QtCore import QObject, Property, Signal, Slot, QSettings, QStandardPaths, QUrl
 from PySide6.QtGui import QDesktopServices, QGuiApplication
 from PySide6.QtCore import Qt
@@ -45,6 +46,7 @@ class PreferencesBridge(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._settings = QSettings("Storm", "StudySpace")
+        self._metrics_db = StudentDatabase()
         # Appearance packs are independent of accent and light/dark mode.
         self._pack = str(self._settings.value("appearance/pack", "pop"))
         # One-time key migration. Never remap the NEW Studio on later launches.
@@ -71,7 +73,8 @@ class PreferencesBridge(QObject):
         if self._theme not in self.THEMES:
             self._theme = "campus"
         self._focus = self._bounded_int(self._settings.value("study/focusMinutes", 25), (15, 25, 45, 60), 25)
-        self._goal = self._bounded_int(self._settings.value("study/weeklyGoal", 10), (5, 10, 15, 20), 10)
+        self._goal = self._bounded_int(self._metrics_db.get_setting("weekly_goal_hours", self._settings.value("study/weeklyGoal", 10)), (5, 10, 15, 20), 10)
+        self._metrics_db.set_setting("weekly_goal_hours", self._goal)
         self._name = str(self._settings.value("profile/name", "Student"))[:48] or "Student"
         self._motion = str(self._settings.value("appearance/reducedMotion", "false")).lower() == "true"
         self._appearance = str(self._settings.value("appearance/mode", "system"))
@@ -213,6 +216,11 @@ class PreferencesBridge(QObject):
     @Slot(int)
     def setWeeklyGoal(self, value):
         if value not in (5, 10, 15, 20) or self._goal == value:
+            return
+        try:
+            self._metrics_db.set_setting("weekly_goal_hours", value)
+        except Exception as exc:
+            print(f"Could not persist weekly goal for student: {exc}")
             return
         self._goal = value
         self._settings.setValue("study/weeklyGoal", value)
@@ -449,33 +457,21 @@ class WorkspaceBridge(QObject):
         self.root = Path(directory) if directory else Path.home() / ".studyspace"
         self.root.mkdir(parents=True, exist_ok=True)
         self.path = self.root / "workspace.json"
+        self.student_db = StudentDatabase(self.root)
         self._data = self._load()
 
     def _load(self):
-        if not self.path.exists():
-            return {key: list(value) for key, value in self.DEFAULT_DATA.items()}
-        try:
-            data = json.loads(self.path.read_text(encoding="utf-8"))
-            if not isinstance(data, dict):
-                raise ValueError("Invalid workspace root")
-            return {key: data.get(key, []) if isinstance(data.get(key, []), list) else []
-                    for key in self.DEFAULT_DATA}
-        except (OSError, ValueError) as exc:
-            # Never overwrite an unreadable/corrupt original without preserving it.
-            self.errorOccurred.emit(f"Could not read saved workspace: {exc}")
-            return {key: [] for key in self.DEFAULT_DATA}
+        # Existing workspace.json is imported once, backed up, and never deleted.
+        return self.student_db.load_workspace(self.path, self.DEFAULT_DATA)
 
     def _save(self):
-        tmp = self.path.with_suffix(".json.tmp")
+        # The database is authoritative; no write to the old shared JSON file.
         try:
-            tmp.write_text(json.dumps(self._data, indent=2, ensure_ascii=False), encoding="utf-8")
-            os.replace(tmp, self.path)
-        except OSError as exc:
-            self.errorOccurred.emit(f"Could not save changes: {exc}")
-            try: tmp.unlink(missing_ok=True)
-            except OSError: pass
+            self.student_db.save_workspace(self._data)
+            return True
+        except Exception as exc:
+            self.errorOccurred.emit(f"Could not save local student database: {exc}")
             return False
-        return True
 
     def _emit(self, *signals):
         for signal in signals: signal.emit()
@@ -580,7 +576,7 @@ class WorkspaceBridge(QObject):
     def topicAccuracy(self):
         acc = {}
         for row in self._data["quizzes"]:
-            name = row.get("topic") or "Mixed topics"
+            name = (row.get("course") or "Unassigned") + " · " + (row.get("topic") or "Mixed topics")
             pair = acc.setdefault(name, [0,0]); pair[0] += int(row.get("correct", 0)); pair[1] += int(row.get("total", 0))
         return [{"name": name, "value": round(100 * v[0] / v[1])} for name,v in acc.items() if v[1] > 0]
 
@@ -820,6 +816,7 @@ class WorkspaceBridge(QObject):
         old = self._data
         self._data = {key: [] for key in self.DEFAULT_DATA}
         if self._save():
+            self.student_db.clear_course_progress()
             for row in old["files"]:
                 p = Path(row.get("path", ""))
                 if p.parent == self.root / "materials":

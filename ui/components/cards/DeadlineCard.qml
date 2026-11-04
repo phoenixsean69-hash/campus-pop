@@ -1,33 +1,93 @@
-// CAMPUS_POP_GENERAL_PACK_V33
 import QtQuick
 import QtQuick.Layouts
 import "../../theme" as Theme
+
+// No synthetic assignments: only real, unfinished saved planner tasks.
 Rectangle {
     id: root
-    radius: c.packPop ? 17 : c.panelRadius; color: c.cardSurface; border.color: c.cardBorder; implicitHeight: 205
+    implicitHeight: 229
+    radius: c.packPop ? 17 : c.panelRadius
+    color: c.cardSurface
+    border.color: c.cardBorder
     signal openPlanner()
     Theme.Colors { id: c }
+    readonly property var upcoming: {
+        var all = workspaceBridge.tasks.filter(function(task) { return !task.done })
+        all.sort(function(a, b) {
+            var aa = a.due || "9999-12-31", bb = b.due || "9999-12-31"
+            return aa === bb ? 0 : aa < bb ? -1 : 1
+        })
+        return all.slice(0, 3)
+    }
+    function deadlineText(due) {
+        if (!due) return "No due date"
+        var deadline = new Date(due + "T00:00:00")
+        if (isNaN(deadline.getTime())) return "Due: " + due
+        var today = new Date()
+        today.setHours(0,0,0,0)
+        var days = Math.round((deadline.getTime() - today.getTime()) / 86400000)
+        if (days < 0) return "Overdue " + Math.abs(days) + "d"
+        if (days === 0) return "Due today"
+        if (days === 1) return "Due tomorrow"
+        return "Due " + due
+    }
     ColumnLayout {
-        anchors.fill: parent; anchors.margins: 13; spacing: 9
-        RowLayout { Layout.fillWidth: true
-            ColumnLayout { spacing: 0; Text { text: "Upcoming Deadlines"; font.pixelSize: Math.round(17 * c.typeScale); font.weight: Font.ExtraBold; color: c.ink }
-Text { text: "Don't miss these important dates"; font.pixelSize: Math.round(12 * c.typeScale); color: c.muted } }
+        anchors.fill: parent
+        anchors.margins: 13
+        spacing: 8
+        RowLayout {
+            Layout.fillWidth: true
+            ColumnLayout {
+                spacing: 0
+                Text { text: "Upcoming Deadlines"; font.family: c.uiFont; font.pixelSize: Math.round(17*c.typeScale); font.weight: Font.ExtraBold; color: c.ink }
+                Text { text: "Your saved study tasks"; font.family: c.uiFont; font.pixelSize: Math.round(12*c.typeScale); color: c.muted }
+            }
             Item { Layout.fillWidth: true }
-            Text { text: "View All  →"; color: c.orangeDark; font.pixelSize: Math.round(13 * c.typeScale); font.weight: Font.Bold; MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor; onClicked: root.openPlanner() } }
+            Text {
+                text: "View All  →"
+                color: c.orangeDark
+                font.family: c.uiFont
+                font.pixelSize: Math.round(13*c.typeScale)
+                font.bold: true
+                MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor; onClicked: root.openPlanner() }
+            }
+        }
+        Text {
+            visible: root.upcoming.length === 0
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            text: "No upcoming tasks. Add one in Study Planner."
+            wrapMode: Text.WordWrap
+            color: c.muted
+            font.family: c.uiFont
+            font.pixelSize: Math.round(13*c.typeScale)
         }
         Repeater {
-            model: [
-                {name:"Statistics Assignment 2",due:"Due tomorrow, 11:59 PM",priority:"HIGH",bg:"#FFF0EF",fg:"#D52A39"},
-                {name:"Python Project (Part A)",due:"Due Friday",priority:"MED",bg:"#FFF3E3",fg:"#DE7A14"},
-                {name:"Computer Systems Quiz",due:"Due Monday",priority:"LOW",bg:"#EAF8F0",fg:"#189E63"}
-            ]
-            delegate: Rectangle { required property var modelData; Layout.fillWidth: true; Layout.fillHeight: true; Layout.minimumHeight: 35; radius: 10; color: c.dark ? c.elevated : modelData.bg
-                RowLayout { anchors.fill: parent; anchors.leftMargin: 9; anchors.rightMargin: 8; spacing: 8
-                    Text { text: "▤"; font.pixelSize: Math.round(23 * c.typeScale); color: modelData.fg }
-                    ColumnLayout { Layout.fillWidth: true; spacing: 0; Text { text: modelData.name; font.pixelSize: Math.round(13 * c.typeScale); font.weight: Font.Bold; color: c.ink; elide: Text.ElideRight; Layout.fillWidth: true }
-Text { text: modelData.due; font.pixelSize: Math.round(12 * c.typeScale); color: modelData.fg } }
-                    Text { text: modelData.priority; font.pixelSize: Math.round(12 * c.typeScale); color: modelData.fg; font.weight: Font.ExtraBold }
+            model: root.upcoming
+            delegate: Rectangle {
+                required property var modelData
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.minimumHeight: 38
+                radius: 9
+                color: c.surfaceSoft
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.leftMargin: 10
+                    anchors.rightMargin: 9
+                    spacing: 7
+                    Rectangle { Layout.preferredWidth: 5; Layout.preferredHeight: 30; radius: 2; color: modelData.priority === "High" ? c.danger : c.orange }
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        spacing: 0
+                        Text { Layout.fillWidth: true; text: modelData.title || "Untitled task"; color: c.ink; font.family: c.uiFont; font.pixelSize: Math.round(13*c.typeScale); font.bold: true; elide: Text.ElideRight }
+                        Text { Layout.fillWidth: true; text: root.deadlineText(modelData.due); color: c.muted; font.family: c.uiFont; font.pixelSize: Math.round(11*c.typeScale); elide: Text.ElideRight }
+                    }
+                    Text { text: String(modelData.priority || "").toUpperCase(); color: c.orangeDark; font.family: c.uiFont; font.bold: true; font.pixelSize: Math.round(10*c.typeScale) }
                 }
+                MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor; onClicked: root.openPlanner() }
             }
         }
     }

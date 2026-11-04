@@ -7,6 +7,7 @@ from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtQuickControls2 import QQuickStyle
 from backend.studyspace_state import PreferencesBridge, WorkspaceBridge
 from backend.profile_bridge import ProfileBridge
+from backend.course_progress_bridge import CourseProgressBridge
 from backend.tutor_bridge import TutorBridge
 
 from backend.library_bridge import LibraryBridge
@@ -45,6 +46,9 @@ def main():
     # CAMPUS_POP_PROFILE_V25
     profile_bridge = ProfileBridge(settings_bridge)
     engine.rootContext().setContextProperty("profileBridge", profile_bridge)
+    course_progress_bridge = CourseProgressBridge(workspace_bridge.student_db, profile_bridge)
+    engine.rootContext().setContextProperty("courseProgressBridge", course_progress_bridge)
+    workspace_bridge.statsChanged.connect(course_progress_bridge.changed.emit)
     tutor_bridge = TutorBridge(root, workspace_bridge, profile=profile_bridge)
     engine.rootContext().setContextProperty("tutorBridge", tutor_bridge)
     # CAMPUS_POP_LIBRARY_V26

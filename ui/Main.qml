@@ -103,7 +103,7 @@ ApplicationWindow {
                             visible: window.activePage === "Dashboard"
                             Cards.HeroBanner { Layout.fillWidth: true; Layout.preferredHeight: 186; onStartStudy: window.activePage="Focus Studio"; onAskTutor: window.activePage="AI Tutor" }
                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 690 ? 2 : 4; columnSpacing: 9; rowSpacing: 9
-                                Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"6"; label:"Courses"; helper:"My modules"; icon:"book"; tint:c.orange; tintSurface:"#FFE8DA" }
+                                Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value: String(courseProgressBridge.count); label:"Courses"; helper:"My modules"; icon:"book"; tint:c.orange; tintSurface:"#FFE8DA" }
                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:(workspaceBridge.totalFocusMinutes / 60).toFixed(1) + " h"; label:"Study hours"; helper:"Recorded sessions"; icon:"timer"; iconHue:"purple"; tint:c.purple; tintSurface:"#EDE1FC" }
                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:Math.round(Math.min(100, 100 * workspaceBridge.weeklyFocusMinutes / (settingsBridge.weeklyGoal * 60))) + "%"; label:"Weekly goal"; helper:"From saved sessions"; icon:"target"; iconHue:"teal"; tint:c.teal; tintSurface:"#DDF7EE" }
                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:String(workspaceBridge.streakDays); label:"Day streak"; helper:"Recorded activity"; icon:"flame"; tint:c.orange; tintSurface:"#FFF0C5" }

@@ -36,14 +36,7 @@ ColumnLayout {
         selectedCourse = null
         requestScrollTop()
     }
-    property var courses: [
-        { title: "Applied Statistics", code: "STA 201", initials: "AS", category: "Mathematics", lecturer: "Course lecturer", topic: "Data types and study design", progress: 65, topicCount: 8, accent: "#F97316", soft: "#FFF0E4", topics: ["Data types and study design", "Descriptive statistics", "Probability foundations", "Conditional probability and Bayes", "Discrete distributions", "Normal distribution and z-scores", "Confidence intervals", "Hypothesis testing and interpretation"] },
-        { title: "Python Programming", code: "CSC 203", initials: "PY", category: "Programming", lecturer: "Course lecturer", topic: "Values, variables and types", progress: 40, topicCount: 8, accent: "#2563EB", soft: "#E9F1FF", topics: ["Values, variables and types", "Conditions and loops", "Lists, tuples, sets and dictionaries", "Functions and scope", "Classes and objects", "Files, paths and exceptions", "Modules, packages and environments", "Testing and debugging"] },
-        { title: "Computer Systems", code: "CSC 214", initials: "CS", category: "Computing", lecturer: "Course lecturer", topic: "Computer architecture", progress: 72, topicCount: 8, accent: "#8793A7", soft: "#EFF2F6", topics: ["Computer architecture", "Binary representation and logic", "CPU performance and caches", "Memory hierarchy and virtual memory", "Processes, threads and scheduling", "Synchronization and deadlocks", "Storage systems and file systems", "Networks and system diagnostics"] },
-        { title: "Software Engineering", code: "SWE 210", initials: "SE", category: "Engineering", lecturer: "Course lecturer", topic: "Software lifecycle and process models", progress: 100, topicCount: 8, accent: "#2563EB", soft: "#E9F1FF", topics: ["Software lifecycle and process models", "Requirements engineering", "UML and system modelling", "Modularity and design principles", "Version control and collaboration", "Software testing strategy", "Quality, security and maintainability", "Project estimation and delivery"] },
-        { title: "Discrete Mathematics", code: "MTH 220", initials: "DM", category: "Mathematics", lecturer: "Course lecturer", topic: "Propositional logic", progress: 34, topicCount: 8, accent: "#F97316", soft: "#FFF0E4", topics: ["Propositional logic", "Predicate logic and quantifiers", "Sets and operations", "Relations and functions", "Counting and combinatorics", "Proof methods", "Graphs and trees", "Recurrence and algorithm analysis"] },
-        { title: "Database Systems", code: "CSC 216", initials: "DB", category: "Computing", lecturer: "Course lecturer", topic: "Database concepts and DBMS", progress: 0, topicCount: 8, accent: "#8793A7", soft: "#EFF2F6", topics: ["Database concepts and DBMS", "Entity-relationship modelling", "Relational keys and constraints", "SQL SELECT and filtering", "Joins and aggregation", "Normalization and anomalies", "Transactions and ACID", "Indexes, access control and backups"] }
-    ]
+    property var courses: courseProgressBridge.courses
     readonly property int inProgressCount: courses.filter(function(course) { return course.progress > 0 && course.progress < 100 }).length
     readonly property int completedCount: courses.filter(function(course) { return course.progress >= 100 }).length
     readonly property var filteredCourses: {
@@ -58,6 +51,16 @@ ColumnLayout {
         if (root.sortMode === "Progress") result.sort(function(a,b) {return b.progress - a.progress})
         else result.sort(function(a,b) {return a.title.localeCompare(b.title)})
         return result
+    }
+    // CAMPUS_POP_REAL_COURSE_SYNC_V47
+    Connections {
+        target: courseProgressBridge
+        function onChanged() {
+            if (root.selectedCourse !== null) {
+                var matching = root.courses.filter(function(course) { return course.code === root.selectedCourse.code })
+                root.selectedCourse = matching.length > 0 ? matching[0] : null
+            }
+        }
     }
     Theme.Colors { id: c }
 
@@ -297,7 +300,7 @@ ColumnLayout {
             }
         }
         Text {
-            text: "Preview courses are illustrative. Data persistence will be added with the backend."
+            text: "Course progress counts topics you mark completed; it is not a mastery score."
             Layout.fillWidth: true
             Layout.topMargin: 4
             horizontalAlignment: Text.AlignHCenter
@@ -334,7 +337,7 @@ ColumnLayout {
         contentItem: ColumnLayout {
             spacing: 12
             Text { text: "Add a course"; font.family: c.uiFont; font.pixelSize: Math.round(25 * c.typeScale); font.weight: Font.ExtraBold; color: c.ink }
-            Text { text: "Set up a course card for this UI preview."; font.family: c.uiFont; font.pixelSize: Math.round(14 * c.typeScale); color: c.muted }
+            Text { text: "Add a course to your saved library."; font.family: c.uiFont; font.pixelSize: Math.round(14 * c.typeScale); color: c.muted }
             Text { text: "COURSE NAME"; font.family: c.uiFont; font.pixelSize: Math.round(12 * c.typeScale); font.weight: Font.Bold; color: c.ink }
             TextField {
                 id: titleInput
@@ -383,12 +386,10 @@ ColumnLayout {
                             return
                         }
                         var category = categoryInput.text.trim() || "General"
-                        root.courses = root.courses.concat([{
-                            title: name, code: code.toUpperCase(), initials: name.substring(0, 2).toUpperCase(),
-                            category: category, lecturer: "Course lecturer", topic: "Getting started",
-                            progress: 0, topicCount: 0, accent: "#2584EB", soft: "#E5F1FF",
-                            topics: ["Introduction", "Course outline", "Learning resources"]
-                        }])
+                        if (!courseProgressBridge.addCourse(name, code, category)) {
+                            root.notice("A course with that code already exists, or saving failed.")
+                            return
+                        }
                         root.filterMode = "All courses"
                         root.searchTerm = ""
                         searchField.text = ""
@@ -396,7 +397,7 @@ ColumnLayout {
                         codeInput.text = ""
                         categoryInput.text = ""
                         addCourseDialog.close()
-                        root.notice("Course added to the UI preview (not saved yet).")
+                        root.notice("Course saved to your local student database.")
                     }
                 }
             }
