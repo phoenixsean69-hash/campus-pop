@@ -17,6 +17,25 @@ ColumnLayout {
     property string filterMode: "All courses"
     property string sortMode: "Title"
     property var selectedCourse: null
+
+    // CAMPUS_POP_CONTINUE_LEARNING_V46_9 — Navigate to the requested course.
+    function openCourseByTitle(title) {
+        if (title === "My Courses") {
+            selectedCourse = null
+            requestScrollTop()
+            return
+        }
+        for (var i = 0; i < courses.length; i++) {
+            if (courses[i].title === title) {
+                selectedCourse = courses[i]
+                detailPage.openTab("Overview")
+                requestScrollTop()
+                return
+            }
+        }
+        selectedCourse = null
+        requestScrollTop()
+    }
     property var courses: [
         { title: "Applied Statistics", code: "STA 201", initials: "AS", category: "Mathematics", lecturer: "Course lecturer", topic: "Data types and study design", progress: 65, topicCount: 8, accent: "#F97316", soft: "#FFF0E4", topics: ["Data types and study design", "Descriptive statistics", "Probability foundations", "Conditional probability and Bayes", "Discrete distributions", "Normal distribution and z-scores", "Confidence intervals", "Hypothesis testing and interpretation"] },
         { title: "Python Programming", code: "CSC 203", initials: "PY", category: "Programming", lecturer: "Course lecturer", topic: "Values, variables and types", progress: 40, topicCount: 8, accent: "#2563EB", soft: "#E9F1FF", topics: ["Values, variables and types", "Conditions and loops", "Lists, tuples, sets and dictionaries", "Functions and scope", "Classes and objects", "Files, paths and exceptions", "Modules, packages and environments", "Testing and debugging"] },

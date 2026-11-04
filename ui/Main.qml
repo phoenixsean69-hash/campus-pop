@@ -109,7 +109,16 @@ ApplicationWindow {
                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:String(workspaceBridge.streakDays); label:"Day streak"; helper:"Recorded activity"; icon:"flame"; tint:c.orange; tintSurface:"#FFF0C5" }
                             }
                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 730 ? 1 : 2; columnSpacing: 11; rowSpacing: 11
-                                Cards.LearningCard { Layout.fillWidth: true; Layout.preferredHeight: 275; onCourseClicked: function(page) { window.activePage = "My Courses" } }
+                                Cards.LearningCard {
+                                    Layout.fillWidth: true
+                                    Layout.preferredHeight: implicitHeight
+                                    courseItems: coursesPage.courses
+                                    onCourseClicked: function(courseTitle) {
+                                        coursesPage.openCourseByTitle(courseTitle)
+                                        window.activePage = "My Courses"
+                                        scroller.contentY = 0
+                                    }
+                                }
                                 Charts.WeeklyChart { Layout.fillWidth: true; Layout.preferredHeight: 275 }
                                 Cards.DeadlineCard { Layout.fillWidth: true; Layout.preferredHeight: 229; onOpenPlanner: window.activePage = "Study Planner" }
                                 Cards.QuickActions { Layout.fillWidth: true; Layout.preferredHeight: 229; onActionSelected: function(page) {window.activePage=page} }
