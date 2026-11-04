@@ -1,0 +1,11 @@
+Python functions are useful because they organize instructions into reusable blocks of code.
+A function definition starts with the def keyword, a function name, parentheses, and a colon.
+The body of a Python function is indented. Defining a function does not execute its instructions.
+Calling a function means writing the function name followed by parentheses.
+A parameter is a name used in a function definition to receive a value.
+An argument is an actual value supplied when calling a function.
+The return statement gives a result back to the calling code.
+The print function displays text and does not return the displayed value.
+For example, a function called add can receive two arguments and return their sum.
+To understand a function, distinguish its definition, parameters, arguments, call, and return value.
+A student should be able to explain an example and solve a different exercise independently.

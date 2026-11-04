@@ -1,0 +1,24 @@
+FLATICON ICON ATTRIBUTION — StudySpace
+
+Icons provided by Flaticon (https://www.flaticon.com).
+Licenses: free for personal and commercial purposes with author attribution.
+The Flaticon terms shown on each source page apply.
+
+Individual icon credits:
+dashboard: Eucalyp — https://www.flaticon.com/free-icon/dashboard_2172225
+courses: Eucalyp — https://www.flaticon.com/free-icon/open-book_890499
+ai-tutor: Eucalyp — https://www.flaticon.com/free-icon/artificial-intelligence_2857372
+planner: Eucalyp — https://www.flaticon.com/free-icon/calendar_950567
+practice: Eucalyp — https://www.flaticon.com/free-icon/checklist_2973199
+focus: Eucalyp — https://www.flaticon.com/free-icon/timer_3702689
+performance: Eucalyp — https://www.flaticon.com/free-icon/data-analytics_3701892
+notes: Eucalyp — https://www.flaticon.com/free-icon/text-file_3519130
+resources: Eucalyp — https://www.flaticon.com/free-icon/cloud-library_4318379
+settings: Eucalyp — https://www.flaticon.com/free-icon/settings_589136
+search: Eucalyp — https://www.flaticon.com/free-icon/search-engine_10491465
+bell: Eucalyp — https://www.flaticon.com/free-icon/bell_1290534
+target: Eucalyp — https://www.flaticon.com/free-icon/target_6550651
+flame: Good Ware — https://www.flaticon.com/free-icon/flame_2933884
+
+Keep these credits with distributable copies of StudySpace.
+For a no-attribution licensed version, obtain the appropriate Flaticon plan/license.

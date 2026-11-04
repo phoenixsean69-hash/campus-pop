@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="176" height="148" viewBox="0 0 176 148">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF0E3"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+ <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EF741B" stop-opacity=".24"/><stop offset="1" stop-color="#EF741B" stop-opacity=".04"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#35435C" flood-opacity=".13"/></filter>
+</defs>
+<ellipse cx="91" cy="133" rx="63" ry="7" fill="#AEB6C4" opacity=".15"/>
+<rect x="14" y="12" width="148" height="120" rx="25" fill="url(#bg)"/>
+<circle cx="145" cy="34" r="18" fill="url(#shine)"/>
+
+<g filter="url(#shadow)"><rect x="34" y="35" width="109" height="79" rx="14" fill="#FFFFFF" stroke="#EF741B" stroke-width="3"/></g>
+<path d="M49 95 V57 M49 95 H130" fill="none" stroke="#9AA7B8" stroke-width="3.5" stroke-linecap="round"/>
+<rect x="59" y="76" width="13" height="19" rx="3" fill="#EF741B" opacity=".53"/>
+<rect x="79" y="66" width="13" height="29" rx="3" fill="#EF741B" opacity=".74"/>
+<rect x="99" y="52" width="13" height="43" rx="3" fill="#EF741B"/>
+<path d="M53 77 C68 75 70 57 84 57 S109 81 128 49" fill="none" stroke="#263B66" stroke-width="3.5" stroke-linecap="round"/>
+<circle cx="128" cy="49" r="4.5" fill="#EF741B"/>
+
+</svg>

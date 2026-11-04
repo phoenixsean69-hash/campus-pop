@@ -1,0 +1,212 @@
+[
+  {
+    "course_id": "python-programming",
+    "title": "Defining Python functions",
+    "keywords": "def define function functions reusable code declare make",
+    "summary": "A function is a named block of code that runs when you call it.",
+    "explanation": "Write def, the function name, parentheses and a colon. Indent the instructions inside the function. Defining a function does not run its body.",
+    "example": "def greet():\n    print('Hello')\n\nThis defines greet. Use greet() to execute it.",
+    "simple": "A function is a named block of code that runs when you call it.",
+    "question": "Write a function called welcome that prints 'Welcome' when called."
+  },
+  {
+    "course_id": "python-programming",
+    "title": "Parameters and arguments",
+    "keywords": "parameter argument parameters arguments input pass passing difference",
+    "summary": "A parameter is a name in a function definition. An argument is the value supplied in a function call.",
+    "explanation": "In def greet(name), name is a parameter. In greet('Rudo'), 'Rudo' is an argument. The parameter receives the argument when the function runs.",
+    "example": "def double(number):\n    print(number * 2)\n\ndouble(4)  # number is parameter; 4 is argument",
+    "simple": "A parameter is a name in a function definition. An argument is the value supplied in a function call.",
+    "question": "In def square(n): and square(7), identify the parameter and the argument. Explain why."
+  },
+  {
+    "course_id": "python-programming",
+    "title": "Returning values",
+    "keywords": "return result returns output print value difference",
+    "summary": "return sends a value back to the caller; print only displays text.",
+    "explanation": "You can store or use a returned value in another expression. A function without an explicit return produces None.",
+    "example": "def triple(x):\n    return x * 3\n\nanswer = triple(5)  # answer is 15",
+    "simple": "return sends a value back to the caller; print only displays text.",
+    "question": "Why does using print instead of return make it difficult to use a function's result in a calculation?"
+  },
+  {
+    "course_id": "python-programming",
+    "title": "Calling functions",
+    "keywords": "call calling execute run invoke parentheses function",
+    "summary": "Calling a function tells Python to execute its body.",
+    "explanation": "After defining a function, write its name followed by parentheses to call it. Include required arguments inside the parentheses.",
+    "example": "def say_hi():\n    print('Hi')\n\nsay_hi()  # runs the function",
+    "simple": "Calling a function tells Python to execute its body.",
+    "question": "What is the difference between writing greet and writing greet() in Python?"
+  },
+  {
+    "course_id": "python-programming",
+    "title": "Python lists and indexing",
+    "keywords": "list lists element index append slicing",
+    "summary": "A Python list stores ordered items and can be changed.",
+    "explanation": "Lists use square brackets. Counting positions starts at zero. append adds an item at the end.",
+    "example": "fruits = ['mango', 'orange']\nprint(fruits[0])  # mango\nfruits.append('banana')",
+    "simple": "A list is a changeable collection of values in a chosen order.",
+    "question": "Make a list containing three cities, then show the second item."
+  },
+  {
+    "course_id": "python-programming",
+    "title": "Python for loops",
+    "keywords": "loop iteration for iterable range repeat",
+    "summary": "A for loop repeats instructions once for every item in an iterable.",
+    "explanation": "Write for name in items: and indent the code to repeat. range(3) gives 0, 1 and 2.",
+    "example": "for number in range(3):\n    print(number)",
+    "simple": "A for loop goes through each item in a group and does something with it.",
+    "question": "Write a for loop that displays each name in a list of three names."
+  },
+  {
+    "course_id": "applied-statistics",
+    "title": "Population and sample",
+    "keywords": "population sample census subset representative",
+    "summary": "A population is the entire group of interest; a sample is a selected part of that group.",
+    "explanation": "Researchers measure a sample when studying everyone is impractical. A sample needs suitable selection to support inference.",
+    "example": "A university has 8,000 students; surveying 400 selected students gives a sample of 400.",
+    "simple": "Population means everyone you want to study; sample means the smaller group you actually measure.",
+    "question": "A school has 1,200 learners and surveys 90. Identify the population and sample."
+  },
+  {
+    "course_id": "applied-statistics",
+    "title": "Descriptive and inferential statistics",
+    "keywords": "descriptive inferential mean estimates predictions summarize",
+    "summary": "Descriptive statistics summarize observed data; inferential statistics make conclusions about a wider population using sample data.",
+    "explanation": "An average score summarizes the students measured. Estimating the average for all students from a sample is inference.",
+    "example": "The average of 100 surveyed learners is descriptive; estimating the entire school average is inferential.",
+    "simple": "Descriptive describes the data you have; inferential reasons about the larger group.",
+    "question": "Is using 150 survey responses to estimate a town-wide opinion descriptive or inferential? Why?"
+  },
+  {
+    "course_id": "applied-statistics",
+    "title": "Data types and measurement scales",
+    "keywords": "nominal ordinal discrete continuous quantitative qualitative categories",
+    "summary": "Nominal data name categories; ordinal data has ordered categories; discrete quantities are counted; continuous quantities are measured.",
+    "explanation": "A measurement scale determines which analyses are meaningful. Numeric labels are not automatically quantitative.",
+    "example": "Blood group: nominal. Satisfaction rating: ordinal. Number of books: discrete. Height: continuous.",
+    "simple": "Ask: Is it a category? Is there order? If it is numeric, is it counted or measured?",
+    "question": "Classify eye colour, class position, number of calls and body temperature."
+  },
+  {
+    "course_id": "computer-systems",
+    "title": "CPU and main memory",
+    "keywords": "cpu ram processor memory volatile instruction registers",
+    "summary": "The CPU executes instructions; RAM holds programs and data currently in use.",
+    "explanation": "A processor fetches, decodes and executes instructions. RAM is generally volatile; its contents do not persist after power is lost.",
+    "example": "Opening an editor loads program data into RAM while the CPU executes instructions.",
+    "simple": "CPU does the processing, while RAM is short-term working storage.",
+    "question": "Why does a computer need both a CPU and RAM?"
+  },
+  {
+    "course_id": "computer-systems",
+    "title": "Operating systems",
+    "keywords": "operating system os processes scheduling files drivers memory",
+    "summary": "An operating system manages resources and provides services to applications.",
+    "explanation": "Typical tasks include process scheduling, memory management, file systems, device access and security controls.",
+    "example": "Windows and Linux manage CPU time and files for multiple running programs.",
+    "simple": "An operating system coordinates hardware and software so programs can work.",
+    "question": "Name two resources an operating system manages and explain each."
+  },
+  {
+    "course_id": "computer-systems",
+    "title": "Binary representation",
+    "keywords": "binary bits bytes base two decimal encoding",
+    "summary": "Computers represent digital information using bits with values 0 or 1.",
+    "explanation": "A byte commonly contains eight bits. Binary place values are powers of two.",
+    "example": "1011₂ = 8 + 0 + 2 + 1 = 11₁₀.",
+    "simple": "Binary counts using only zeros and ones.",
+    "question": "Convert 1101₂ to decimal and show the place values."
+  },
+  {
+    "course_id": "software-engineering",
+    "title": "Software development life cycle",
+    "keywords": "sdlc requirements design implementation testing maintenance",
+    "summary": "A software development life cycle organizes the work of planning, building, testing and maintaining software.",
+    "explanation": "Common activities include requirements elicitation, design, implementation, verification, deployment and maintenance. They may be iterative.",
+    "example": "For a course-registration app, identify user needs before implementation and verify enrolment rules with tests.",
+    "simple": "Build software in deliberate stages and revisit earlier work when you learn something new.",
+    "question": "Why should a team validate requirements before implementing features?"
+  },
+  {
+    "course_id": "software-engineering",
+    "title": "Functional and nonfunctional requirements",
+    "keywords": "functional nonfunctional requirements performance security usability",
+    "summary": "Functional requirements describe what a system must do; nonfunctional requirements describe constraints or qualities.",
+    "explanation": "A functional requirement describes a behaviour. A nonfunctional requirement may specify speed, availability or security.",
+    "example": "Functional: students can enrol. Nonfunctional: enrolment responds within two seconds under a stated load.",
+    "simple": "Functional says what it does; nonfunctional says how well or under what limits.",
+    "question": "Classify: users can reset passwords; pages load in under three seconds."
+  },
+  {
+    "course_id": "software-engineering",
+    "title": "Software testing levels",
+    "keywords": "unit integration system acceptance tests verification validation",
+    "summary": "Testing checks whether software behaves as expected at different scopes.",
+    "explanation": "Unit tests check small parts; integration tests check interactions; system tests check the entire application; acceptance tests evaluate user needs.",
+    "example": "Testing a fee calculation function is unit testing. Testing fees with the payment interface is integration testing.",
+    "simple": "Test small pieces, how they work together, and whether the complete product meets needs.",
+    "question": "Give one test at each of unit and integration level for a login system."
+  },
+  {
+    "course_id": "discrete-mathematics",
+    "title": "Sets and set operations",
+    "keywords": "sets union intersection difference elements subset",
+    "summary": "A set is a collection of distinct elements. Union combines members, while intersection selects shared members.",
+    "explanation": "A ∪ B contains elements from either set; A ∩ B contains elements present in both.",
+    "example": "If A={1,2,3} and B={3,4}, then A∪B={1,2,3,4} and A∩B={3}.",
+    "simple": "Union gathers all members; intersection keeps only shared members.",
+    "question": "For A={a,b,c} and B={b,d}, find their union and intersection."
+  },
+  {
+    "course_id": "discrete-mathematics",
+    "title": "Propositions and logical connectives",
+    "keywords": "logic proposition conjunction disjunction negation truth table",
+    "summary": "A proposition is a statement that is either true or false.",
+    "explanation": "Conjunction p AND q is true only if both are true. Disjunction p OR q is true if at least one is true.",
+    "example": "If p is true and q is false, p AND q is false; p OR q is true.",
+    "simple": "Logic studies how true/false statements combine.",
+    "question": "With p=false and q=true, evaluate p AND q and p OR q."
+  },
+  {
+    "course_id": "discrete-mathematics",
+    "title": "Graphs and networks",
+    "keywords": "graph vertices edges directed undirected path",
+    "summary": "A graph models relationships using vertices and edges.",
+    "explanation": "Vertices represent objects, while edges represent connections. Directed edges have direction; undirected edges do not.",
+    "example": "Road intersections can be vertices and roads can be edges.",
+    "simple": "A graph is a picture of things and their connections.",
+    "question": "Represent three towns connected in a chain as vertices and edges."
+  },
+  {
+    "course_id": "database-systems",
+    "title": "Relational tables and keys",
+    "keywords": "database relational table primary key foreign key row column",
+    "summary": "A relational table stores rows of records and columns of attributes. Keys identify records and relate tables.",
+    "explanation": "A primary key uniquely identifies a row; a foreign key refers to a key in another table.",
+    "example": "Students(StudentID, Name) and Enrolments(StudentID, CourseID) can be linked by StudentID.",
+    "simple": "Tables store records; keys identify them and connect related records.",
+    "question": "Why should a Students table have a primary key?"
+  },
+  {
+    "course_id": "database-systems",
+    "title": "SQL SELECT queries",
+    "keywords": "sql select from where filter rows retrieve database",
+    "summary": "SELECT retrieves data from a table; WHERE filters rows based on a condition.",
+    "explanation": "Use SELECT column FROM table WHERE condition to retrieve only matching records.",
+    "example": "SELECT Name FROM Students WHERE Level = 2;",
+    "simple": "SELECT chooses columns and WHERE chooses matching rows.",
+    "question": "Write a query that retrieves names of students whose Level is 1."
+  },
+  {
+    "course_id": "database-systems",
+    "title": "Database normalization",
+    "keywords": "normalization first normal form redundancy update anomalies relationships",
+    "summary": "Normalization organizes relational data to reduce unnecessary duplication and update anomalies.",
+    "explanation": "In first normal form, each field contains a single atomic value for the chosen model. Later normal forms address dependencies.",
+    "example": "Store customer details once in Customers rather than copying an address into every order row.",
+    "simple": "Normalization helps avoid repeating the same information across many records.",
+    "question": "Why can repeatedly storing one customer address in many orders cause problems?"
+  }
+]

@@ -1,0 +1,73 @@
+{
+  "Applied Statistics": [
+    "statistics",
+    "statistical",
+    "probability",
+    "regression",
+    "sampling",
+    "hypothesis testing",
+    "confidence interval",
+    "bayesian",
+    "variance",
+    "distribution"
+  ],
+  "Python Programming": [
+    "python (programming language)",
+    "python programming",
+    "python language",
+    "python syntax",
+    "python library",
+    "python function",
+    "python module",
+    "python interpreter",
+    "python package"
+  ],
+  "Computer Systems": [
+    "computer architecture",
+    "operating system",
+    "microprocessor",
+    "computer hardware",
+    "computer memory",
+    "cpu",
+    "instruction set",
+    "computer networking",
+    "embedded system",
+    "computer storage"
+  ],
+  "Software Engineering": [
+    "software engineering",
+    "software testing",
+    "software development",
+    "software design",
+    "software architecture",
+    "software requirements",
+    "version control",
+    "agile software",
+    "software maintenance",
+    "unit testing"
+  ],
+  "Discrete Mathematics": [
+    "discrete mathematics",
+    "graph theory",
+    "combinatorics",
+    "set theory",
+    "propositional logic",
+    "mathematical logic",
+    "recurrence relation",
+    "discrete probability",
+    "boolean algebra",
+    "number theory"
+  ],
+  "Database Systems": [
+    "database",
+    "relational model",
+    "sql",
+    "database management",
+    "database normalization",
+    "transaction processing",
+    "query optimization",
+    "data modeling",
+    "nosql",
+    "relational algebra"
+  ]
+}

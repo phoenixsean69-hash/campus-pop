@@ -1,0 +1,26 @@
+[
+  {
+    "id": "applied-statistics",
+    "name": "Applied Statistics"
+  },
+  {
+    "id": "python-programming",
+    "name": "Python Programming"
+  },
+  {
+    "id": "computer-systems",
+    "name": "Computer Systems"
+  },
+  {
+    "id": "software-engineering",
+    "name": "Software Engineering"
+  },
+  {
+    "id": "discrete-mathematics",
+    "name": "Discrete Mathematics"
+  },
+  {
+    "id": "database-systems",
+    "name": "Database Systems"
+  }
+]

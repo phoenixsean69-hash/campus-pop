@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="176" height="148" viewBox="0 0 176 148">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E9F1FF"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+ <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563EB" stop-opacity=".24"/><stop offset="1" stop-color="#2563EB" stop-opacity=".04"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#35435C" flood-opacity=".13"/></filter>
+</defs>
+<ellipse cx="91" cy="133" rx="63" ry="7" fill="#AEB6C4" opacity=".15"/>
+<rect x="14" y="12" width="148" height="120" rx="25" fill="url(#bg)"/>
+<circle cx="145" cy="34" r="18" fill="url(#shine)"/>
+
+<g filter="url(#shadow)"><rect x="24" y="30" width="128" height="91" rx="13" fill="#FFFFFF" stroke="#2563EB" stroke-width="3.2"/></g>
+<path d="M27 50 H149" stroke="#D7E3FC" stroke-width="3"/><circle cx="40" cy="40" r="3" fill="#2563EB"/><circle cx="50" cy="40" r="3" fill="#93A6C4"/>
+<rect x="43" y="65" width="34" height="21" rx="5" fill="#E4EDFF" stroke="#2563EB" stroke-width="3"/>
+<rect x="102" y="65" width="33" height="21" rx="5" fill="#E4EDFF" stroke="#263B66" stroke-width="3"/>
+<rect x="73" y="98" width="32" height="13" rx="5" fill="#E4EDFF" stroke="#2563EB" stroke-width="2.8"/>
+<path d="M77 75 H102 M89 75 V99" stroke="#263B66" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="89" cy="75" r="4" fill="#2563EB"/>
+
+</svg>

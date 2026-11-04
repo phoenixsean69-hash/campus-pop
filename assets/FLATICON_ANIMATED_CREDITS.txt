@@ -1,0 +1,18 @@
+StudySpace — Flaticon animated sidebar icons (Basic Accent Outline)
+
+Source: https://www.flaticon.com/animated-icons
+Free Flaticon downloads require attribution. Keep this file distributed with the app.
+Credit: Animated icons from Flaticon (https://www.flaticon.com/). Individual sources:
+
+Dashboard: https://www.flaticon.com/free-animated-icon/home_8121334
+My Courses: https://www.flaticon.com/free-animated-icon/book_8722444
+AI Tutor: https://www.flaticon.com/free-animated-icon/brain_15577902
+Study Planner: https://www.flaticon.com/free-animated-icon/calendar_10359685
+Practice Lab: https://www.flaticon.com/free-animated-icon/checklist_15578526
+Focus Studio: https://www.flaticon.com/free-animated-icon/stopwatch_8721077
+Performance: https://www.flaticon.com/free-animated-icon/chart_17864920
+Notes & Files: https://www.flaticon.com/free-animated-icon/folder_15579101
+Resources: https://www.flaticon.com/free-animated-icon/education_19036764
+Settings: https://www.flaticon.com/free-animated-icon/settings_8121259
+
+Review individual asset licensing terms before distributing your installer.

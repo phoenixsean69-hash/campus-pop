@@ -1,0 +1,420 @@
+CAMPUS POP DASHBOARD INSPECTION — NO FILES MODIFIED
+
+Project: C:\Users\nooklyweb\Documents\Python Projects\Storm
+
+FILE: ui_backup_20261102_222154\Main.qml — 4/4 matching labels
+------------------------------------------------------------------------
+--- Lines 26-66 ---
+   26:             Nav.TopBar { Layout.fillWidth: true; Layout.preferredHeight: 68; panelOpen: window.showPanel; onPanelToggle: window.panelExpanded = !window.panelExpanded; onNotice: function(message) {window.showNotice(message)} }
+   27:             Rectangle { Layout.fillWidth: true; Layout.fillHeight: true; color: c.canvas
+   28:                 RowLayout { anchors.fill: parent; anchors.margins: 15; spacing: 13
+   29:                     Flickable {
+   30:                         id: scroller
+   31:                         Layout.fillWidth: true; Layout.fillHeight: true
+   32:                         clip: true; contentWidth: width
+   33:                         contentHeight: window.activePage === "Dashboard" ? dashboard.implicitHeight + 15 : secondary.implicitHeight + 15
+   34:                         boundsBehavior: Flickable.StopAtBounds
+   35:                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+   36:                         ColumnLayout {
+   37:                             id: dashboard; width: scroller.width - 5; spacing: 11
+   38:                             visible: window.activePage === "Dashboard"
+   39:                             Cards.HeroBanner { Layout.fillWidth: true; Layout.preferredHeight: 186; onStartStudy: window.activePage="Focus Studio"; onAskTutor: window.activePage="AI Tutor" }
+   40:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 690 ? 2 : 4; columnSpacing: 9; rowSpacing: 9
+   41:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"4"; label:"Courses"; helper:"This semester"; icon:"book"; tint:c.orange; tintSurface:"#FFE8DA" }
+   42:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"12.4 h"; label:"Study hours"; helper:"+2.1h this week"; icon:"timer"; iconHue:"purple"; tint:c.purple; tintSurface:"#EDE1FC" }
+   43:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"85%"; label:"Weekly goal"; helper:"You're on track"; icon:"target"; iconHue:"teal"; tint:c.teal; tintSurface:"#DDF7EE" }
+   44:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"7"; label:"Day streak"; helper:"Keep going!"; icon:"flame"; tint:c.orange; tintSurface:"#FFF0C5" }
+   45:                             }
+   46:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 730 ? 1 : 2; columnSpacing: 11; rowSpacing: 11
+   47:                                 Cards.LearningCard { Layout.fillWidth: true; Layout.preferredHeight: 275; onCourseClicked: function(page) { window.activePage = "My Courses" } }
+   48:                                 Charts.WeeklyChart { Layout.fillWidth: true; Layout.preferredHeight: 275 }
+   49:                                 Cards.DeadlineCard { Layout.fillWidth: true; Layout.preferredHeight: 229; onOpenPlanner: window.activePage = "Study Planner" }
+   50:                                 Cards.QuickActions { Layout.fillWidth: true; Layout.preferredHeight: 229; onActionSelected: function(page) {window.activePage=page} }
+   51:                             }
+   52:                         }
+   53:                         ColumnLayout {
+   54:                             id: secondary; width: scroller.width - 5; spacing: 15
+   55:                             visible: window.activePage !== "Dashboard"
+   56:                             Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 170; radius: 19; color: "#FFE2C3"
+   57:                                 ColumnLayout { anchors.left: parent.left; anchors.leftMargin: 24; anchors.verticalCenter: parent.verticalCenter; spacing: 6
+   58:                                     Text { text: "YOUR WORKSPACE"; font.pixelSize: 13; font.weight: Font.Bold; color: c.orangeDark; font.letterSpacing: 1.4 }
+   59:                                     Text { text: window.activePage; font.pixelSize: 31; font.weight: Font.ExtraBold; color: c.ink }
+   60:                                     Text { text: "A dedicated space for your academic journey."; font.pixelSize: 15; color: "#84523E" }
+   61:                                 }
+   62:                             }
+   63:                             GridLayout { columns: 2; columnSpacing: 14; rowSpacing: 14; Layout.fillWidth: true
+   64:                                 Repeater { model: ["Overview","Recent Activity","My Library","Study Tools"]
+   65:                                     delegate: Rectangle { required property string modelData; Layout.fillWidth: true; Layout.preferredHeight: 168; radius: 17; color: "#FFFFFF"; border.color: c.line
+   66:                                         ColumnLayout { anchors.fill: parent; anchors.margins: 17; spacing: 9
+
+FILE: ui_before_duo_buttons\Main.qml — 4/4 matching labels
+------------------------------------------------------------------------
+--- Lines 26-66 ---
+   26:             Nav.TopBar { Layout.fillWidth: true; Layout.preferredHeight: 68; panelOpen: window.showPanel; onPanelToggle: window.panelExpanded = !window.panelExpanded; onNotice: function(message) {window.showNotice(message)} }
+   27:             Rectangle { Layout.fillWidth: true; Layout.fillHeight: true; color: c.canvas
+   28:                 RowLayout { anchors.fill: parent; anchors.margins: 15; spacing: 13
+   29:                     Flickable {
+   30:                         id: scroller
+   31:                         Layout.fillWidth: true; Layout.fillHeight: true
+   32:                         clip: true; contentWidth: width
+   33:                         contentHeight: window.activePage === "Dashboard" ? dashboard.implicitHeight + 15 : secondary.implicitHeight + 15
+   34:                         boundsBehavior: Flickable.StopAtBounds
+   35:                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+   36:                         ColumnLayout {
+   37:                             id: dashboard; width: scroller.width - 5; spacing: 11
+   38:                             visible: window.activePage === "Dashboard"
+   39:                             Cards.HeroBanner { Layout.fillWidth: true; Layout.preferredHeight: 186; onStartStudy: window.activePage="Focus Studio"; onAskTutor: window.activePage="AI Tutor" }
+   40:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 690 ? 2 : 4; columnSpacing: 9; rowSpacing: 9
+   41:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"4"; label:"Courses"; helper:"This semester"; icon:"book"; tint:c.orange; tintSurface:"#FFE8DA" }
+   42:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"12.4 h"; label:"Study hours"; helper:"+2.1h this week"; icon:"timer"; iconHue:"purple"; tint:c.purple; tintSurface:"#EDE1FC" }
+   43:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"85%"; label:"Weekly goal"; helper:"You're on track"; icon:"target"; iconHue:"teal"; tint:c.teal; tintSurface:"#DDF7EE" }
+   44:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"7"; label:"Day streak"; helper:"Keep going!"; icon:"flame"; tint:c.orange; tintSurface:"#FFF0C5" }
+   45:                             }
+   46:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 730 ? 1 : 2; columnSpacing: 11; rowSpacing: 11
+   47:                                 Cards.LearningCard { Layout.fillWidth: true; Layout.preferredHeight: 275; onCourseClicked: function(page) { window.activePage = "My Courses" } }
+   48:                                 Charts.WeeklyChart { Layout.fillWidth: true; Layout.preferredHeight: 275 }
+   49:                                 Cards.DeadlineCard { Layout.fillWidth: true; Layout.preferredHeight: 229; onOpenPlanner: window.activePage = "Study Planner" }
+   50:                                 Cards.QuickActions { Layout.fillWidth: true; Layout.preferredHeight: 229; onActionSelected: function(page) {window.activePage=page} }
+   51:                             }
+   52:                         }
+   53:                         ColumnLayout {
+   54:                             id: secondary; width: scroller.width - 5; spacing: 15
+   55:                             visible: window.activePage !== "Dashboard"
+   56:                             Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 170; radius: 19; color: "#FFE2C3"
+   57:                                 ColumnLayout { anchors.left: parent.left; anchors.leftMargin: 24; anchors.verticalCenter: parent.verticalCenter; spacing: 6
+   58:                                     Text { text: "YOUR WORKSPACE"; font.pixelSize: 13; font.weight: Font.Bold; color: c.orangeDark; font.letterSpacing: 1.4 }
+   59:                                     Text { text: window.activePage; font.pixelSize: 31; font.weight: Font.ExtraBold; color: c.ink }
+   60:                                     Text { text: "A dedicated space for your academic journey."; font.pixelSize: 15; color: "#84523E" }
+   61:                                 }
+   62:                             }
+   63:                             GridLayout { columns: 2; columnSpacing: 14; rowSpacing: 14; Layout.fillWidth: true
+   64:                                 Repeater { model: ["Overview","Recent Activity","My Library","Study Tools"]
+   65:                                     delegate: Rectangle { required property string modelData; Layout.fillWidth: true; Layout.preferredHeight: 168; radius: 17; color: "#FFFFFF"; border.color: c.line
+   66:                                         ColumnLayout { anchors.fill: parent; anchors.margins: 17; spacing: 9
+
+FILE: ui_before_readability_v3\Main.qml — 4/4 matching labels
+------------------------------------------------------------------------
+--- Lines 26-66 ---
+   26:             Nav.TopBar { Layout.fillWidth: true; Layout.preferredHeight: 68; panelOpen: window.showPanel; onPanelToggle: window.panelExpanded = !window.panelExpanded; onNotice: function(message) {window.showNotice(message)} }
+   27:             Rectangle { Layout.fillWidth: true; Layout.fillHeight: true; color: c.canvas
+   28:                 RowLayout { anchors.fill: parent; anchors.margins: 15; spacing: 13
+   29:                     Flickable {
+   30:                         id: scroller
+   31:                         Layout.fillWidth: true; Layout.fillHeight: true
+   32:                         clip: true; contentWidth: width
+   33:                         contentHeight: window.activePage === "Dashboard" ? dashboard.implicitHeight + 15 : secondary.implicitHeight + 15
+   34:                         boundsBehavior: Flickable.StopAtBounds
+   35:                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+   36:                         ColumnLayout {
+   37:                             id: dashboard; width: scroller.width - 5; spacing: 11
+   38:                             visible: window.activePage === "Dashboard"
+   39:                             Cards.HeroBanner { Layout.fillWidth: true; Layout.preferredHeight: 174; onStartStudy: window.activePage="Focus Studio"; onAskTutor: window.activePage="AI Tutor" }
+   40:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 690 ? 2 : 4; columnSpacing: 9; rowSpacing: 9
+   41:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 103; value:"4"; label:"Courses"; helper:"This semester"; icon:"book"; tint:c.orange; tintSurface:"#FFE8DA" }
+   42:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 103; value:"12.4 h"; label:"Study hours"; helper:"+2.1h this week"; icon:"timer"; iconHue:"purple"; tint:c.purple; tintSurface:"#EDE1FC" }
+   43:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 103; value:"85%"; label:"Weekly goal"; helper:"You're on track"; icon:"target"; iconHue:"teal"; tint:c.teal; tintSurface:"#DDF7EE" }
+   44:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 103; value:"7"; label:"Day streak"; helper:"Keep going!"; icon:"flame"; tint:c.orange; tintSurface:"#FFF0C5" }
+   45:                             }
+   46:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 730 ? 1 : 2; columnSpacing: 11; rowSpacing: 11
+   47:                                 Cards.LearningCard { Layout.fillWidth: true; Layout.preferredHeight: 250; onCourseClicked: function(page) { window.activePage = "My Courses" } }
+   48:                                 Charts.WeeklyChart { Layout.fillWidth: true; Layout.preferredHeight: 250 }
+   49:                                 Cards.DeadlineCard { Layout.fillWidth: true; Layout.preferredHeight: 210; onOpenPlanner: window.activePage = "Study Planner" }
+   50:                                 Cards.QuickActions { Layout.fillWidth: true; Layout.preferredHeight: 210; onActionSelected: function(page) {window.activePage=page} }
+   51:                             }
+   52:                         }
+   53:                         ColumnLayout {
+   54:                             id: secondary; width: scroller.width - 5; spacing: 15
+   55:                             visible: window.activePage !== "Dashboard"
+   56:                             Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 170; radius: 19; color: "#FFE2C3"
+   57:                                 ColumnLayout { anchors.left: parent.left; anchors.leftMargin: 24; anchors.verticalCenter: parent.verticalCenter; spacing: 6
+   58:                                     Text { text: "YOUR WORKSPACE"; font.pixelSize: 10; font.weight: Font.Bold; color: c.orangeDark; font.letterSpacing: 1.4 }
+   59:                                     Text { text: window.activePage; font.pixelSize: 29; font.weight: Font.ExtraBold; color: c.ink }
+   60:                                     Text { text: "A dedicated space for your academic journey."; font.pixelSize: 12; color: "#84523E" }
+   61:                                 }
+   62:                             }
+   63:                             GridLayout { columns: 2; columnSpacing: 14; rowSpacing: 14; Layout.fillWidth: true
+   64:                                 Repeater { model: ["Overview","Recent Activity","My Library","Study Tools"]
+   65:                                     delegate: Rectangle { required property string modelData; Layout.fillWidth: true; Layout.preferredHeight: 168; radius: 17; color: "#FFFFFF"; border.color: c.line
+   66:                                         ColumnLayout { anchors.fill: parent; anchors.margins: 17; spacing: 9
+
+FILE: ui_before_syntax_fix\Main.qml — 4/4 matching labels
+------------------------------------------------------------------------
+--- Lines 26-66 ---
+   26:             Nav.TopBar { Layout.fillWidth: true; Layout.preferredHeight: 68; panelOpen: window.showPanel; onPanelToggle: window.panelExpanded = !window.panelExpanded; onNotice: function(message) {window.showNotice(message)} }
+   27:             Rectangle { Layout.fillWidth: true; Layout.fillHeight: true; color: c.canvas
+   28:                 RowLayout { anchors.fill: parent; anchors.margins: 15; spacing: 13
+   29:                     Flickable {
+   30:                         id: scroller
+   31:                         Layout.fillWidth: true; Layout.fillHeight: true
+   32:                         clip: true; contentWidth: width
+   33:                         contentHeight: window.activePage === "Dashboard" ? dashboard.implicitHeight + 15 : secondary.implicitHeight + 15
+   34:                         boundsBehavior: Flickable.StopAtBounds
+   35:                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+   36:                         ColumnLayout {
+   37:                             id: dashboard; width: scroller.width - 5; spacing: 11
+   38:                             visible: window.activePage === "Dashboard"
+   39:                             Cards.HeroBanner { Layout.fillWidth: true; Layout.preferredHeight: 174; onStartStudy: window.activePage="Focus Studio"; onAskTutor: window.activePage="AI Tutor" }
+   40:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 690 ? 2 : 4; columnSpacing: 9; rowSpacing: 9
+   41:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 103; value:"4"; label:"Courses"; helper:"This semester"; icon:"book"; tint:c.orange; tintSurface:"#FFE8DA" }
+   42:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 103; value:"12.4 h"; label:"Study hours"; helper:"+2.1h this week"; icon:"timer"; iconHue:"purple"; tint:c.purple; tintSurface:"#EDE1FC" }
+   43:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 103; value:"85%"; label:"Weekly goal"; helper:"You're on track"; icon:"target"; iconHue:"teal"; tint:c.teal; tintSurface:"#DDF7EE" }
+   44:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 103; value:"7"; label:"Day streak"; helper:"Keep going!"; icon:"flame"; tint:c.orange; tintSurface:"#FFF0C5" }
+   45:                             }
+   46:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 730 ? 1 : 2; columnSpacing: 11; rowSpacing: 11
+   47:                                 Cards.LearningCard { Layout.fillWidth: true; Layout.preferredHeight: 250; onCourseClicked: function(page) { window.activePage = "My Courses" } }
+   48:                                 Charts.WeeklyChart { Layout.fillWidth: true; Layout.preferredHeight: 250 }
+   49:                                 Cards.DeadlineCard { Layout.fillWidth: true; Layout.preferredHeight: 210; onOpenPlanner: window.activePage = "Study Planner" }
+   50:                                 Cards.QuickActions { Layout.fillWidth: true; Layout.preferredHeight: 210; onActionSelected: function(page) {window.activePage=page} }
+   51:                             }
+   52:                         }
+   53:                         ColumnLayout {
+   54:                             id: secondary; width: scroller.width - 5; spacing: 15
+   55:                             visible: window.activePage !== "Dashboard"
+   56:                             Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 170; radius: 19; color: "#FFE2C3"
+   57:                                 ColumnLayout { anchors.left: parent.left; anchors.leftMargin: 24; anchors.verticalCenter: parent.verticalCenter; spacing: 6
+   58:                                     Text { text: "YOUR WORKSPACE"; font.pixelSize: 10; font.weight: Font.Bold; color: c.orangeDark; font.letterSpacing: 1.4 }
+   59:                                     Text { text: window.activePage; font.pixelSize: 29; font.weight: Font.ExtraBold; color: c.ink }
+   60:                                     Text { text: "A dedicated space for your academic journey."; font.pixelSize: 12; color: "#84523E" }
+   61:                                 }
+   62:                             }
+   63:                             GridLayout { columns: 2; columnSpacing: 14; rowSpacing: 14; Layout.fillWidth: true
+   64:                                 Repeater { model: ["Overview","Recent Activity","My Library","Study Tools"]
+   65:                                     delegate: Rectangle { required property string modelData; Layout.fillWidth: true; Layout.preferredHeight: 168; radius: 17; color: "#FFFFFF"; border.color: c.line
+   66:                                         ColumnLayout { anchors.fill: parent; anchors.margins: 17; spacing: 9
+
+FILE: backups\illustrations_before_v13_20261102_234913\ui\Main.qml — 4/4 matching labels
+------------------------------------------------------------------------
+--- Lines 31-71 ---
+   31:                         Layout.fillWidth: true; Layout.fillHeight: true
+   32:                         clip: true
+   33:                         contentWidth: width
+   34:                         contentHeight: Math.max(height, (window.activePage === "Dashboard" ? dashboard.implicitHeight : secondary.implicitHeight) + 20)
+   35:                         boundsBehavior: Flickable.StopAtBounds
+   36:                         boundsMovement: Flickable.StopAtBounds
+   37:                         flickDeceleration: 4000
+   38:                         maximumFlickVelocity: 1600
+   39:                         pixelAligned: true
+   40:                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded; interactive: true }
+   41:                         ColumnLayout {
+   42:                             id: dashboard; width: scroller.width - 5; spacing: 11
+   43:                             visible: window.activePage === "Dashboard"
+   44:                             Cards.HeroBanner { Layout.fillWidth: true; Layout.preferredHeight: 186; onStartStudy: window.activePage="Focus Studio"; onAskTutor: window.activePage="AI Tutor" }
+   45:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 690 ? 2 : 4; columnSpacing: 9; rowSpacing: 9
+   46:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"4"; label:"Courses"; helper:"This semester"; icon:"book"; tint:c.orange; tintSurface:"#FFE8DA" }
+   47:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"12.4 h"; label:"Study hours"; helper:"+2.1h this week"; icon:"timer"; iconHue:"purple"; tint:c.purple; tintSurface:"#EDE1FC" }
+   48:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"85%"; label:"Weekly goal"; helper:"You're on track"; icon:"target"; iconHue:"teal"; tint:c.teal; tintSurface:"#DDF7EE" }
+   49:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"7"; label:"Day streak"; helper:"Keep going!"; icon:"flame"; tint:c.orange; tintSurface:"#FFF0C5" }
+   50:                             }
+   51:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 730 ? 1 : 2; columnSpacing: 11; rowSpacing: 11
+   52:                                 Cards.LearningCard { Layout.fillWidth: true; Layout.preferredHeight: 275; onCourseClicked: function(page) { window.activePage = "My Courses" } }
+   53:                                 Charts.WeeklyChart { Layout.fillWidth: true; Layout.preferredHeight: 275 }
+   54:                                 Cards.DeadlineCard { Layout.fillWidth: true; Layout.preferredHeight: 229; onOpenPlanner: window.activePage = "Study Planner" }
+   55:                                 Cards.QuickActions { Layout.fillWidth: true; Layout.preferredHeight: 229; onActionSelected: function(page) {window.activePage=page} }
+   56:                             }
+   57:                         }
+   58:                         ColumnLayout {
+   59:                             id: secondary; width: scroller.width - 5; spacing: 15
+   60:                             visible: window.activePage !== "Dashboard"
+   61:                             Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 170; radius: 19; color: "#FFE2C3"
+   62:                                 ColumnLayout { anchors.left: parent.left; anchors.leftMargin: 24; anchors.verticalCenter: parent.verticalCenter; spacing: 6
+   63:                                     Text { text: "YOUR WORKSPACE"; font.pixelSize: 13; font.weight: Font.Bold; color: c.orangeDark; font.letterSpacing: 1.4 }
+   64:                                     Text { text: window.activePage; font.pixelSize: 31; font.weight: Font.ExtraBold; color: c.ink }
+   65:                                     Text { text: "A dedicated space for your academic journey."; font.pixelSize: 15; color: "#84523E" }
+   66:                                 }
+   67:                             }
+   68:                             GridLayout { columns: 2; columnSpacing: 14; rowSpacing: 14; Layout.fillWidth: true
+   69:                                 Repeater { model: ["Overview","Recent Activity","My Library","Study Tools"]
+   70:                                     delegate: Rectangle { required property string modelData; Layout.fillWidth: true; Layout.preferredHeight: 168; radius: 17; color: "#FFFFFF"; border.color: c.line
+   71:                                         ColumnLayout { anchors.fill: parent; anchors.margins: 17; spacing: 9
+
+FILE: backups\my_courses_v14_20261103_000133\ui\Main.qml — 4/4 matching labels
+------------------------------------------------------------------------
+--- Lines 31-71 ---
+   31:                         Layout.fillWidth: true; Layout.fillHeight: true
+   32:                         clip: true
+   33:                         contentWidth: width
+   34:                         contentHeight: Math.max(height, (window.activePage === "Dashboard" ? dashboard.implicitHeight : secondary.implicitHeight) + 20)
+   35:                         boundsBehavior: Flickable.StopAtBounds
+   36:                         boundsMovement: Flickable.StopAtBounds
+   37:                         flickDeceleration: 4000
+   38:                         maximumFlickVelocity: 1600
+   39:                         pixelAligned: true
+   40:                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded; interactive: true }
+   41:                         ColumnLayout {
+   42:                             id: dashboard; width: scroller.width - 5; spacing: 11
+   43:                             visible: window.activePage === "Dashboard"
+   44:                             Cards.HeroBanner { Layout.fillWidth: true; Layout.preferredHeight: 186; onStartStudy: window.activePage="Focus Studio"; onAskTutor: window.activePage="AI Tutor" }
+   45:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 690 ? 2 : 4; columnSpacing: 9; rowSpacing: 9
+   46:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"4"; label:"Courses"; helper:"This semester"; icon:"book"; tint:c.orange; tintSurface:"#FFE8DA" }
+   47:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"12.4 h"; label:"Study hours"; helper:"+2.1h this week"; icon:"timer"; iconHue:"purple"; tint:c.purple; tintSurface:"#EDE1FC" }
+   48:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"85%"; label:"Weekly goal"; helper:"You're on track"; icon:"target"; iconHue:"teal"; tint:c.teal; tintSurface:"#DDF7EE" }
+   49:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"7"; label:"Day streak"; helper:"Keep going!"; icon:"flame"; tint:c.orange; tintSurface:"#FFF0C5" }
+   50:                             }
+   51:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 730 ? 1 : 2; columnSpacing: 11; rowSpacing: 11
+   52:                                 Cards.LearningCard { Layout.fillWidth: true; Layout.preferredHeight: 275; onCourseClicked: function(page) { window.activePage = "My Courses" } }
+   53:                                 Charts.WeeklyChart { Layout.fillWidth: true; Layout.preferredHeight: 275 }
+   54:                                 Cards.DeadlineCard { Layout.fillWidth: true; Layout.preferredHeight: 229; onOpenPlanner: window.activePage = "Study Planner" }
+   55:                                 Cards.QuickActions { Layout.fillWidth: true; Layout.preferredHeight: 229; onActionSelected: function(page) {window.activePage=page} }
+   56:                             }
+   57:                         }
+   58:                         ColumnLayout {
+   59:                             id: secondary; width: scroller.width - 5; spacing: 15
+   60:                             visible: window.activePage !== "Dashboard"
+   61:                             Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 170; radius: 19; color: "#FFE2C3"; clip: true
+   62:                                 Cards.SectionStudentArt {
+   63:                                     sectionName: window.activePage
+   64:                                     anchors.top: parent.top
+   65:                                     anchors.bottom: parent.bottom
+   66:                                     anchors.right: parent.right
+   67:                                     width: Math.min(320, parent.width * 0.39)
+   68:                                 }
+   69:                                 Rectangle {
+   70:                                     anchors.top: parent.top
+   71:                                     anchors.bottom: parent.bottom
+
+FILE: backups\AI_Tutor_v17_20261103_003211\ui\Main.qml — 4/4 matching labels
+------------------------------------------------------------------------
+--- Lines 20-88 ---
+   20:     readonly property bool showPanel: panelExpanded && width >= 1130
+   21:     property string toastMessage: ""
+   22:     function showNotice(message) { toastMessage = message; toast.visible = true; toastTimer.restart() }
+   23:     Timer { id: toastTimer; interval: 3300; onTriggered: toast.visible = false }
+   24:     RowLayout { anchors.fill: parent; spacing: 0
+   25:         Nav.Sidebar { Layout.preferredWidth: 252; Layout.fillHeight: true; currentPage: window.activePage; onPageSelected: function(page) { window.activePage = page; scroller.contentY = 0 } }
+   26:         ColumnLayout { Layout.fillWidth: true; Layout.fillHeight: true; spacing: 0
+   27:             Nav.TopBar { Layout.fillWidth: true; Layout.preferredHeight: 68; panelOpen: window.showPanel; onPanelToggle: window.panelExpanded = !window.panelExpanded; onNotice: function(message) {window.showNotice(message)} }
+   28:             Rectangle { Layout.fillWidth: true; Layout.fillHeight: true; color: c.canvas
+   29:                 RowLayout { anchors.fill: parent; anchors.margins: 15; spacing: 13
+   30:                     Flickable {
+   31:                         id: scroller
+   32:                         Layout.fillWidth: true; Layout.fillHeight: true
+   33:                         clip: true
+   34:                         contentWidth: width
+   35:                         contentHeight: Math.max(height, (window.activePage === "Dashboard" ? dashboard.implicitHeight : (window.activePage === "My Courses" ? coursesPage.implicitHeight : secondary.implicitHeight)) + 20)
+   36:                         boundsBehavior: Flickable.StopAtBounds
+   37:                         boundsMovement: Flickable.StopAtBounds
+   38:                         flickDeceleration: 4000
+   39:                         maximumFlickVelocity: 1600
+   40:                         pixelAligned: true
+   41:                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded; interactive: true }
+   42:                         ColumnLayout {
+   43:                             id: dashboard; width: scroller.width - 5; spacing: 11
+   44:                             visible: window.activePage === "Dashboard"
+   45:                             Cards.HeroBanner { Layout.fillWidth: true; Layout.preferredHeight: 186; onStartStudy: window.activePage="Focus Studio"; onAskTutor: window.activePage="AI Tutor" }
+   46:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 690 ? 2 : 4; columnSpacing: 9; rowSpacing: 9
+   47:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"4"; label:"Courses"; helper:"This semester"; icon:"book"; tint:c.orange; tintSurface:"#FFE8DA" }
+   48:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"12.4 h"; label:"Study hours"; helper:"+2.1h this week"; icon:"timer"; iconHue:"purple"; tint:c.purple; tintSurface:"#EDE1FC" }
+   49:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"85%"; label:"Weekly goal"; helper:"You're on track"; icon:"target"; iconHue:"teal"; tint:c.teal; tintSurface:"#DDF7EE" }
+   50:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"7"; label:"Day streak"; helper:"Keep going!"; icon:"flame"; tint:c.orange; tintSurface:"#FFF0C5" }
+   51:                             }
+   52:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 730 ? 1 : 2; columnSpacing: 11; rowSpacing: 11
+   53:                                 Cards.LearningCard { Layout.fillWidth: true; Layout.preferredHeight: 275; onCourseClicked: function(page) { window.activePage = "My Courses" } }
+   54:                                 Charts.WeeklyChart { Layout.fillWidth: true; Layout.preferredHeight: 275 }
+   55:                                 Cards.DeadlineCard { Layout.fillWidth: true; Layout.preferredHeight: 229; onOpenPlanner: window.activePage = "Study Planner" }
+   56:                                 Cards.QuickActions { Layout.fillWidth: true; Layout.preferredHeight: 229; onActionSelected: function(page) {window.activePage=page} }
+   57:                             }
+   58:                         }
+   59:                         Pages.MyCourses {
+   60:                             id: coursesPage
+   61:                             width: scroller.width - 5
+   62:                             visible: window.activePage === "My Courses"
+   63:                             onNotice: function(message) { window.showNotice(message) }
+   64:                             onOpenPage: function(page) { window.activePage = page }
+   65:                             onRequestScrollTop: scroller.contentY = 0
+   66:                         }
+   67:                         ColumnLayout {
+   68:                             id: secondary; width: scroller.width - 5; spacing: 15
+   69:                             visible: window.activePage !== "Dashboard" && window.activePage !== "My Courses"
+   70:                             Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 170; radius: 19; color: "#FFE2C3"; clip: true
+   71:                                 Cards.SectionStudentArt {
+   72:                                     sectionName: window.activePage
+   73:                                     anchors.top: parent.top
+   74:                                     anchors.bottom: parent.bottom
+   75:                                     anchors.right: parent.right
+   76:                                     width: Math.min(320, parent.width * 0.39)
+   77:                                 }
+   78:                                 Rectangle {
+   79:                                     anchors.top: parent.top
+   80:                                     anchors.bottom: parent.bottom
+   81:                                     anchors.right: parent.right
+   82:                                     anchors.rightMargin: Math.min(320, parent.width * 0.39) - 50
+   83:                                     width: 50
+   84:                                     gradient: Gradient {
+   85:                                         orientation: Gradient.Horizontal
+   86:                                         GradientStop { position: 0.0; color: "#FFE2C3" }
+   87:                                         GradientStop { position: 1.0; color: "#00FFE2C3" }
+   88:                                     }
+
+FILE: backups\All_Screens_v19_20261103_012828\ui\Main.qml — 4/4 matching labels
+------------------------------------------------------------------------
+--- Lines 21-89 ---
+   21:     property string toastMessage: ""
+   22:     function showNotice(message) { toastMessage = message; toast.visible = true; toastTimer.restart() }
+   23:     Timer { id: toastTimer; interval: 3300; onTriggered: toast.visible = false }
+   24:     RowLayout { anchors.fill: parent; spacing: 0
+   25:         Nav.Sidebar { Layout.preferredWidth: 252; Layout.fillHeight: true; currentPage: window.activePage; onPageSelected: function(page) { window.activePage = page; scroller.contentY = 0 } }
+   26:         ColumnLayout { Layout.fillWidth: true; Layout.fillHeight: true; spacing: 0
+   27:             Nav.TopBar { Layout.fillWidth: true; Layout.preferredHeight: 68; panelOpen: window.showPanel; onPanelToggle: window.panelExpanded = !window.panelExpanded; onNotice: function(message) {window.showNotice(message)} }
+   28:             Rectangle { Layout.fillWidth: true; Layout.fillHeight: true; color: c.canvas
+   29:                 RowLayout { anchors.fill: parent; anchors.margins: 15; spacing: 13
+   30:                     Flickable {
+   31:                         id: scroller
+   32:                         visible: window.activePage !== "AI Tutor"
+   33:                         Layout.fillWidth: true; Layout.fillHeight: true
+   34:                         clip: true
+   35:                         contentWidth: width
+   36:                         contentHeight: Math.max(height, (window.activePage === "Dashboard" ? dashboard.implicitHeight : (window.activePage === "My Courses" ? coursesPage.implicitHeight : secondary.implicitHeight)) + 20)
+   37:                         boundsBehavior: Flickable.StopAtBounds
+   38:                         boundsMovement: Flickable.StopAtBounds
+   39:                         flickDeceleration: 4000
+   40:                         maximumFlickVelocity: 1600
+   41:                         pixelAligned: true
+   42:                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded; interactive: true }
+   43:                         ColumnLayout {
+   44:                             id: dashboard; width: scroller.width - 5; spacing: 11
+   45:                             visible: window.activePage === "Dashboard"
+   46:                             Cards.HeroBanner { Layout.fillWidth: true; Layout.preferredHeight: 186; onStartStudy: window.activePage="Focus Studio"; onAskTutor: window.activePage="AI Tutor" }
+   47:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 690 ? 2 : 4; columnSpacing: 9; rowSpacing: 9
+   48:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"4"; label:"Courses"; helper:"This semester"; icon:"book"; tint:c.orange; tintSurface:"#FFE8DA" }
+   49:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"12.4 h"; label:"Study hours"; helper:"+2.1h this week"; icon:"timer"; iconHue:"purple"; tint:c.purple; tintSurface:"#EDE1FC" }
+   50:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"85%"; label:"Weekly goal"; helper:"You're on track"; icon:"target"; iconHue:"teal"; tint:c.teal; tintSurface:"#DDF7EE" }
+   51:                                 Cards.StatCard { Layout.fillWidth: true; Layout.preferredHeight: 111; value:"7"; label:"Day streak"; helper:"Keep going!"; icon:"flame"; tint:c.orange; tintSurface:"#FFF0C5" }
+   52:                             }
+   53:                             GridLayout { Layout.fillWidth: true; columns: scroller.width < 730 ? 1 : 2; columnSpacing: 11; rowSpacing: 11
+   54:                                 Cards.LearningCard { Layout.fillWidth: true; Layout.preferredHeight: 275; onCourseClicked: function(page) { window.activePage = "My Courses" } }
+   55:                                 Charts.WeeklyChart { Layout.fillWidth: true; Layout.preferredHeight: 275 }
+   56:                                 Cards.DeadlineCard { Layout.fillWidth: true; Layout.preferredHeight: 229; onOpenPlanner: window.activePage = "Study Planner" }
+   57:                                 Cards.QuickActions { Layout.fillWidth: true; Layout.preferredHeight: 229; onActionSelected: function(page) {window.activePage=page} }
+   58:                             }
+   59:                         }
+   60:                         Pages.MyCourses {
+   61:                             id: coursesPage
+   62:                             width: scroller.width - 5
+   63:                             visible: window.activePage === "My Courses"
+   64:                             onNotice: function(message) { window.showNotice(message) }
+   65:                             onOpenPage: function(page) { window.activePage = page }
+   66:                             onRequestScrollTop: scroller.contentY = 0
+   67:                         }
+   68:                         ColumnLayout {
+   69:                             id: secondary; width: scroller.width - 5; spacing: 15
+   70:                             visible: window.activePage !== "Dashboard" && window.activePage !== "My Courses" && window.activePage !== "AI Tutor"
+   71:                             Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 170; radius: 19; color: "#FFE2C3"; clip: true
+   72:                                 Cards.SectionStudentArt {
+   73:                                     sectionName: window.activePage
+   74:                                     anchors.top: parent.top
+   75:                                     anchors.bottom: parent.bottom
+   76:                                     anchors.right: parent.right
+   77:                                     width: Math.min(320, parent.width * 0.39)
+   78:                                 }
+   79:                                 Rectangle {
+   80:                                     anchors.top: parent.top
+   81:                                     anchors.bottom: parent.bottom
+   82:                                     anchors.right: parent.right
+   83:                                     anchors.rightMargin: Math.min(320, parent.width * 0.39) - 50
+   84:                                     width: 50
+   85:                                     gradient: Gradient {
+   86:                                         orientation: Gradient.Horizontal
+   87:                                         GradientStop { position: 0.0; color: "#FFE2C3" }
+   88:                                         GradientStop { position: 1.0; color: "#00FFE2C3" }
+   89:                                     }
+

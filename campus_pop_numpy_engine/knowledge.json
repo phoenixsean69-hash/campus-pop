@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Defining Python functions",
+    "keywords": ["def", "define", "function", "functions", "reusable", "code", "declare", "make"],
+    "summary": "A function is a named block of code that runs when you call it.",
+    "explanation": "Write def, the function name, parentheses and a colon. Indent the instructions inside the function. Defining a function does not run its body.",
+    "example": "def greet():\n    print('Hello')\n\nThis defines greet. Use greet() to execute it.",
+    "question": "Write a function called welcome that prints 'Welcome' when called."
+  },
+  {
+    "title": "Parameters and arguments",
+    "keywords": ["parameter", "argument", "parameters", "arguments", "input", "pass", "passing", "difference"],
+    "summary": "A parameter is a name in a function definition. An argument is the value supplied in a function call.",
+    "explanation": "In def greet(name), name is a parameter. In greet('Rudo'), 'Rudo' is an argument. The parameter receives the argument when the function runs.",
+    "example": "def double(number):\n    print(number * 2)\n\ndouble(4)  # number is parameter; 4 is argument",
+    "question": "In def square(n): and square(7), identify the parameter and the argument. Explain why."
+  },
+  {
+    "title": "Returning values",
+    "keywords": ["return", "result", "returns", "output", "print", "value", "difference"],
+    "summary": "return sends a value back to the caller; print only displays text.",
+    "explanation": "You can store or use a returned value in another expression. A function without an explicit return produces None.",
+    "example": "def triple(x):\n    return x * 3\n\nanswer = triple(5)  # answer is 15",
+    "question": "Why does using print instead of return make it difficult to use a function's result in a calculation?"
+  },
+  {
+    "title": "Calling functions",
+    "keywords": ["call", "calling", "execute", "run", "invoke", "parentheses", "function"],
+    "summary": "Calling a function tells Python to execute its body.",
+    "explanation": "After defining a function, write its name followed by parentheses to call it. Include required arguments inside the parentheses.",
+    "example": "def say_hi():\n    print('Hi')\n\nsay_hi()  # runs the function",
+    "question": "What is the difference between writing greet and writing greet() in Python?"
+  }
+]
