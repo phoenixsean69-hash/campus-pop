@@ -119,7 +119,9 @@ ApplicationWindow {
                                         scroller.contentY = 0
                                     }
                                 }
-                                Charts.WeeklyChart { Layout.fillWidth: true; Layout.preferredHeight: 275 }
+                                Charts.WeeklyChart { Layout.fillWidth: true; Layout.preferredHeight: 310
+ onFocusRequested: window.activePage = "Focus Studio"
+}
                                 Cards.DeadlineCard { Layout.fillWidth: true; Layout.preferredHeight: 229; onOpenPlanner: window.activePage = "Study Planner" }
                                 Cards.QuickActions { Layout.fillWidth: true; Layout.preferredHeight: 229; onActionSelected: function(page) {window.activePage=page} }
                             }

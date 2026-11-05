@@ -526,6 +526,63 @@ class WorkspaceBridge(QObject):
         return count
 
     @Property("QVariantList", notify=statsChanged)
+    def weeklyActivity(self):
+        today = datetime.now().astimezone().date()
+        monday = today - timedelta(days=today.weekday())
+        totals = {}
+
+        for row in self._data["focus"]:
+            try:
+                minutes = max(0.0, float(row.get("minutes", 0)))
+                stamp = datetime.fromisoformat(str(row.get("when", "")))
+                day = stamp.astimezone().date()
+                if minutes <= 0:
+                    continue
+                key = day.isoformat()
+                if key not in totals:
+                    totals[key] = [0.0, 0]
+                totals[key][0] += minutes
+                totals[key][1] += 1
+            except (ValueError, TypeError, OverflowError, AttributeError):
+                continue
+
+        weeks = []
+        for offset in range(8):
+            start = monday - timedelta(weeks=offset)
+            end = start + timedelta(days=6)
+            days = []
+            total_minutes = 0.0
+            session_count = 0
+
+            for index in range(7):
+                day = start + timedelta(days=index)
+                minutes, sessions = totals.get(day.isoformat(), [0.0, 0])
+                total_minutes += minutes
+                session_count += sessions
+                days.append({
+                    "day": day.strftime("%a"),
+                    "date": day.isoformat(),
+                    "minutes": round(minutes, 2),
+                    "sessions": sessions,
+                    "future": day > today
+                })
+
+            label = (
+                "This week" if offset == 0
+                else "Last week" if offset == 1
+                else start.strftime("%d %b") + " - " + end.strftime("%d %b")
+            )
+
+            weeks.append({
+                "label": label,
+                "days": days,
+                "totalMinutes": round(total_minutes, 2),
+                "sessions": session_count
+            })
+
+        return weeks
+
+    @Property("QVariantList", notify=statsChanged)
     def dailyFocus(self):
         today = datetime.now().astimezone().date()
         output = []
